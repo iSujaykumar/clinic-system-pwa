@@ -1,0 +1,208 @@
+/* style.css - Clinic System UI */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter','Segoe UI',system-ui,sans-serif;
+background:linear-gradient(to bottom,#f8fafc,#f1f5f9);
+color:#1f2937;
+line-height:1.6;
+min-height:100vh;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* ── Header ── */
+h1{
+color:#1e40af;
+text-align:center;
+font-size:2.3rem;
+font-weight:700;
+margin-bottom:20px;
+}
+
+/* ── Top Buttons ── */
+.top-buttons{
+display:flex;
+gap:15px;
+justify-content:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.top-buttons button{
+padding:10px 25px;
+font-size:16px;
+font-weight:600;
+background:#3b82f6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+transition:0.25s;
+}
+
+.top-buttons button:hover{
+background:#2563eb;
+transform:translateY(-1px);
+}
+
+/* ── Section Titles ── */
+h2{
+font-size:1.6rem;
+margin:25px 0 15px;
+font-weight:600;
+}
+
+/* ── Form Grid (Responsive) ── */
+.form-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+gap:25px;
+margin-bottom:20px;
+}
+
+.form-column{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.form-column label{
+font-weight:600;
+font-size:14px;
+margin-top:6px;
+}
+
+.form-column input,
+.form-column select{
+width:100%;
+padding:8px 10px;
+font-size:14px;
+border:1px solid #d1d5db;
+border-radius:5px;
+background:#fff;
+}
+
+.form-column input:focus,
+.form-column select:focus{
+outline:none;
+border-color:#3b82f6;
+box-shadow:0 0 0 2px rgba(59,130,246,0.15);
+}
+
+/* ── Text Areas ── */
+.section{
+margin-top:18px;
+}
+
+.section h3{
+margin-bottom:6px;
+font-size:1.1rem;
+}
+
+.section textarea,
+.section input{
+width:100%;
+padding:8px;
+border:1px solid #d1d5db;
+border-radius:5px;
+background:white;
+}
+
+.section textarea{
+height:150px;
+resize:vertical;
+}
+
+#followup{
+height:100px;
+}
+
+/* ── Action Buttons ── */
+button{
+padding:10px 20px;
+border:none;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+button[onclick="savePatient()"]{
+background:#10b981;
+color:white;
+}
+
+button[onclick="savePatient()"]:hover{
+background:#059669;
+}
+
+button[onclick="printSheet()"]{
+background:#f59e0b;
+color:white;
+}
+
+button[onclick="printSheet()"]:hover{
+background:#d97706;
+}
+
+/* ── History Section ── */
+#historySection{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+#searchBox{
+width:100%;
+max-width:400px;
+padding:10px;
+margin-bottom:20px;
+border:1px solid #d1d5db;
+border-radius:6px;
+}
+
+#searchBox:focus{
+outline:none;
+border-color:#3b82f6;
+}
+
+/* ── Table ── */
+table{
+width:100%;
+border-collapse:collapse;
+min-width:500px; /* Ensures table doesn't shrink too much, enables scrolling */
+}
+
+th,td{
+padding:12px 15px;
+text-align:left;
+border-bottom:1px solid #e5e7eb;
+}
+
+th{
+background:#f3f4f6;
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:0.05em;
+}
+
+tr:hover{
+background:#f9fafb;
+}
+
+/* ── Responsive Table Wrapper ── */
+/* Handled in HTML with <div style="overflow-x:auto;"> */

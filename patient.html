@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Patient Details</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:40px;
+}
+
+.row{
+margin-bottom:10px;
+}
+
+.section{
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Patient Record</h2>
+
+<div id="data"></div>
+
+<script>
+
+let patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+let index = localStorage.getItem("selectedPatient");
+
+let p = patients[index];
+
+if(!p){
+document.getElementById("data").innerHTML="Patient not found";
+}else{
+
+let html = `
+
+<div class="row"><b>Name:</b> ${p.name}</div>
+<div class="row"><b>Date:</b> ${p.date}</div>
+
+<div class="row"><b>Mobile:</b> ${p.mobile}</div>
+<div class="row"><b>Age:</b> ${p.age}</div>
+<div class="row"><b>Sex:</b> ${p.sex}</div>
+
+<div class="row"><b>Height:</b> ${p.height}</div>
+<div class="row"><b>Weight:</b> ${p.weight}</div>
+
+<div class="row"><b>Pulse:</b> ${p.pulse}</div>
+<div class="row"><b>BP:</b> ${p.bp}</div>
+<div class="row"><b>Temp:</b> ${p.temp}</div>
+<div class="row"><b>RR:</b> ${p.rr}</div>
+<div class="row"><b>Blood Sugar:</b> ${p.sugar}</div>
+
+<div class="section">
+<b>Present Complaints</b>
+<p>${p.complaints || "-"}</p>
+</div>
+
+<div class="section">
+<b>Investigation</b>
+<p>${p.investigation || "-"}</p>
+</div>
+
+<div class="section">
+<b>Follow Up</b>
+<p>${p.followup || "-"}</p>
+</div>
+
+`;
+
+document.getElementById("data").innerHTML=html;
+
+}
+
+</script>
+
+</body>
+
+</html>

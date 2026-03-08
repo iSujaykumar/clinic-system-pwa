@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic System</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e40af">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Clinic System</h1>
+
+<div class="top-buttons">
+<button onclick="showForm()">New Patient</button>
+<button onclick="showHistory()">Patient Records</button>
+</div>
+
+<h2>Today's Patients: <span id="todayCount">0</span></h2>
+
+<div id="formSection">
+
+<h2>Patient Entry</h2>
+
+<div class="form-grid">
+
+<div class="form-column">
+
+<label>Patient Name</label>
+<input id="name" type="text" required>
+
+<label>Date</label>
+<input id="date" type="date" required>
+
+<label>Mobile</label>
+<input id="mobile" type="tel" required>
+
+<label>Weight (kg)</label>
+<select id="weight">
+<option value="">Select</option>
+<option>40</option>
+<option>45</option>
+<option>50</option>
+<option>55</option>
+<option>60</option>
+<option>65</option>
+<option>70</option>
+<option>75</option>
+<option>80</option>
+<option>85</option>
+<option>90</option>
+<option>95</option>
+<option>100</option>
+</select>
+
+</div>
+
+<div class="form-column">
+
+<label>Age</label>
+<select id="age">
+<option value="">Select Age</option>
+<option>Under 18</option>
+<option>18</option>
+<option>19</option>
+<option>20</option>
+<option>21</option>
+<option>22</option>
+<option>23</option>
+<option>24</option>
+<option>25</option>
+<option>26</option>
+<option>27</option>
+<option>28</option>
+<option>29</option>
+<option>30</option>
+<option>31-35</option>
+<option>36-40</option>
+<option>41-45</option>
+<option>46-50</option>
+<option>51-55</option>
+<option>56-60</option>
+<option>61-65</option>
+<option>66-70</option>
+<option>71-75</option>
+<option>76-80</option>
+<option>81-85</option>
+<option>86-90</option>
+<option>91+</option>
+</select>
+
+<label>Sex</label>
+<select id="sex">
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+
+<label>Height (cm)</label>
+<select id="height">
+<option value="">Select</option>
+<option>140</option>
+<option>145</option>
+<option>150</option>
+<option>155</option>
+<option>160</option>
+<option>165</option>
+<option>170</option>
+<option>175</option>
+<option>180</option>
+<option>185</option>
+<option>190</option>
+<option>195</option>
+<option>200</option>
+</select>
+
+<label>RR</label>
+<select id="rr">
+<option value="">Select</option>
+<option>12</option>
+<option>14</option>
+<option>16</option>
+<option>18</option>
+<option>20</option>
+<option>22</option>
+</select>
+
+</div>
+
+<div class="form-column">
+
+<label>Pulse (bpm)</label>
+<select id="pulse">
+<option value="">Select</option>
+<option>60</option>
+<option>65</option>
+<option>70</option>
+<option>75</option>
+<option>80</option>
+<option>85</option>
+<option>90</option>
+<option>95</option>
+<option>100</option>
+</select>
+
+<label>BP</label>
+<select id="bp">
+<option value="">Select</option>
+<option>110/70</option>
+<option>120/80</option>
+<option>130/80</option>
+<option>130/90</option>
+<option>140/90</option>
+<option>150/100</option>
+<option>160/100</option>
+</select>
+
+<label>Temp (°C)</label>
+<select id="temp">
+<option value="">Select</option>
+<option>36.0</option>
+<option>36.5</option>
+<option>37.0</option>
+<option>37.5</option>
+<option>38.0</option>
+<option>38.5</option>
+<option>39.0</option>
+</select>
+
+<label>Blood Sugar</label>
+<select id="sugar">
+<option value="">Select</option>
+<option>80</option>
+<option>90</option>
+<option>100</option>
+<option>110</option>
+<option>120</option>
+<option>140</option>
+<option>160</option>
+<option>180</option>
+<option>200</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="section">
+<h3>Present Complaints</h3>
+<textarea id="complaints"></textarea>
+</div>
+
+<div class="section">
+<h3>Investigation</h3>
+<textarea id="investigation"></textarea>
+</div>
+
+<div class="section">
+<h3>Follow Up</h3>
+<textarea id="followup"></textarea>
+</div>
+
+<br>
+
+<div class="top-buttons" style="justify-content: flex-start;">
+<button onclick="savePatient()">Save Patient</button>
+<button onclick="printSheet()">Print Sheet</button>
+</div>
+
+</div>
+
+<div id="historySection" style="display:none">
+
+<h2>Patient Records</h2>
+
+<input id="searchBox" type="text" placeholder="Search patient" onkeyup="searchPatient()">
+
+<div style="overflow-x:auto;">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Mobile</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="patientTable"></tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+<script src="database.js"></script>
+<script src="app.js"></script>
+<script src="print.js"></script>
+<script>
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(registration => console.log('ServiceWorker registration successful'))
+      .catch(err => console.log('ServiceWorker registration failed: ', err));
+  });
+}
+</script>
+
+</body>
+</html>
