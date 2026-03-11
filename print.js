@@ -160,7 +160,7 @@ body {
 
 <div class="header">
   <h2>Dr. Wankhede</h2>
-  <h3>Nimbabi Health and Wellness Clinic</h3>
+  <h3>Nimbabai Health and Wellness Clinic</h3>
 </div>
 
 <div class="info-row">
