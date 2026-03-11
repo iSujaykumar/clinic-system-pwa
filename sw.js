@@ -1,6 +1,6 @@
 // sw.js - Service Worker for caching
 
-const CACHE_NAME = 'clinic-pwa-v1';
+const CACHE_NAME = 'clinic-pwa-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
