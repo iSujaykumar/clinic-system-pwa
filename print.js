@@ -144,6 +144,9 @@ body {
 .rx-space {
   flex-grow: 1;
   min-height: 350px;
+  white-space: pre-line;
+  font-size: 16px;
+  padding-top: 10px;
 }
 
 /* ── Footer ── */
@@ -170,7 +173,7 @@ body {
   </div>
   <div class="info-item">
     <span class="info-label">Date:</span>
-    <span class="info-value">${elements.dateInput.value}</span>
+    <span class="info-value">${elements.date.value}</span>
   </div>
 </div>
 
@@ -207,7 +210,7 @@ body {
     <span class="info-value">${elements.bp.value}</span>
   </div>
   <div class="vital">
-    <span class="info-label">Temp (°C)</span>
+    <span class="info-label">Temp (°F)</span>
     <span class="info-value">${elements.temp.value}</span>
   </div>
   <div class="vital">
@@ -225,14 +228,14 @@ body {
   <div class="content-box">${elements.complaints.value}</div>
 </div>
 
+<div class="rx-container">
+  <div class="rx-symbol">℞</div>
+  <div class="rx-space">${elements.rx ? elements.rx.value : ""}</div>
+</div>
+
 <div class="section">
   <div class="section-title">Investigation</div>
   <div class="content-box">${elements.investigation.value}</div>
-</div>
-
-<div class="rx-container">
-  <div class="rx-symbol">℞</div>
-  <div class="rx-space"></div>
 </div>
 
 <div class="footer info-row">

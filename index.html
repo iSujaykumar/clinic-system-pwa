@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1e40af">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -51,7 +52,12 @@
 <input id="age" type="number" placeholder="e.g. 30">
 
 <label>Sex</label>
-<input id="sex" type="text" placeholder="e.g. Male/Female">
+<select id="sex" required>
+  <option value="" disabled selected>Select Sex</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Other">Other</option>
+</select>
 
 <label>Height (cm)</label>
 <input id="height" type="number" step="0.1" placeholder="e.g. 170">
@@ -69,8 +75,23 @@
 <label>BP</label>
 <input id="bp" type="text" placeholder="e.g. 120/80">
 
-<label>Temp (°C)</label>
-<input id="temp" type="number" step="0.1" placeholder="e.g. 37.0">
+<label>Temp (°F)</label>
+<select id="temp">
+  <option value="" disabled selected>Select Temp</option>
+  <option value="97.0">97.0 °F</option>
+  <option value="97.5">97.5 °F</option>
+  <option value="98.0">98.0 °F</option>
+  <option value="98.6">98.6 °F (Normal)</option>
+  <option value="99.0">99.0 °F</option>
+  <option value="99.5">99.5 °F</option>
+  <option value="100.0">100.0 °F</option>
+  <option value="100.5">100.5 °F</option>
+  <option value="101.0">101.0 °F</option>
+  <option value="102.0">102.0 °F</option>
+  <option value="103.0">103.0 °F</option>
+  <option value="104.0">104.0 °F</option>
+  <option value="105.0">105.0 °F</option>
+</select>
 
 <label>Blood Sugar</label>
 <input id="sugar" type="number" placeholder="e.g. 100">
@@ -82,6 +103,11 @@
 <div class="section">
 <h3>Present Complaints</h3>
 <textarea id="complaints"></textarea>
+</div>
+
+<div class="section">
+<h3>Rx (Prescription)</h3>
+<textarea id="rx"></textarea>
 </div>
 
 <div class="section">

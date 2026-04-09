@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Patient Details</title>
-
 <style>
-
 body{
 font-family:Arial;
 padding:40px;
 }
-
 .row{
 margin-bottom:10px;
 }
-
 .section{
 margin-top:20px;
 }
-
 </style>
-
 </head>
-
 <body>
 
 <h2>Patient Record</h2>
@@ -32,11 +23,8 @@ margin-top:20px;
 <div id="data"></div>
 
 <script>
-
 let patients = JSON.parse(localStorage.getItem("patients")) || [];
-
 let index = localStorage.getItem("selectedPatient");
-
 let p = patients[index];
 
 if(!p){
@@ -57,13 +45,18 @@ let html = `
 
 <div class="row"><b>Pulse:</b> ${p.pulse}</div>
 <div class="row"><b>BP:</b> ${p.bp}</div>
-<div class="row"><b>Temp:</b> ${p.temp}</div>
+<div class="row"><b>Temp (°F):</b> ${p.temp}</div>
 <div class="row"><b>RR:</b> ${p.rr}</div>
 <div class="row"><b>Blood Sugar:</b> ${p.sugar}</div>
 
 <div class="section">
 <b>Present Complaints</b>
 <p>${p.complaints || "-"}</p>
+</div>
+
+<div class="section">
+<b>Rx (Prescription)</b>
+<p>${p.rx || "-"}</p>
 </div>
 
 <div class="section">
@@ -81,9 +74,7 @@ let html = `
 document.getElementById("data").innerHTML=html;
 
 }
-
 </script>
 
 </body>
-
 </html>
