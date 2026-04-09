@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,161 +9,144 @@
 <meta name="theme-color" content="#1e40af">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
 
-<div class="container">
-
-<h1>Clinic System</h1>
-
-<div class="top-buttons">
-<button onclick="showForm()">New Patient</button>
-<button onclick="showHistory()">Patient Records</button>
+<div id="loginSection" class="container" style="max-width: 400px; margin-top: 10vh;">
+  <div style="background: white; padding: 40px; border-radius: 16px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <h2 style="color: #1e40af; margin-bottom: 20px;">Clinic Login</h2>
+    <input id="loginId" type="text" placeholder="Login ID" style="margin-bottom: 15px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+    <input id="loginPassword" type="password" placeholder="Password" style="margin-bottom: 25px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+    <button onclick="login()" style="width: 100%; padding: 12px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">Login</button>
+  </div>
 </div>
 
-<h2>Today's Patients: <span id="todayCount">0</span></h2>
+<div id="appSection" class="container" style="display:none;">
 
-<div id="formSection">
+  <h1>Clinic System <button onclick="logout()" style="float:right; font-size:12px; padding:6px 12px; background: #ef4444; border-radius: 6px; color: white; cursor: pointer;">Logout</button></h1>
 
-<h2>Patient Entry</h2>
+  <div class="top-buttons">
+    <button onclick="showForm()">New Patient</button>
+    <button onclick="showHistory()">Patient Records</button>
+  </div>
 
-<div class="form-grid">
+  <h2>Today's Patients: <span id="todayCount">0</span></h2>
 
-<div class="form-column">
+  <div id="formSection">
+    <h2>Patient Entry</h2>
+    <div class="form-grid">
+      <div class="form-column">
+        <label>Patient Name</label>
+        <input id="name" type="text" required>
+        <label>Date</label>
+        <input id="date" type="date" required>
+        <label>Mobile</label>
+        <input id="mobile" type="tel" required>
+        <label>Weight (kg)</label>
+        <input id="weight" type="number" step="0.1" placeholder="e.g. 65">
+      </div>
+      <div class="form-column">
+        <label>Age</label>
+        <input id="age" type="number" placeholder="e.g. 30">
+        <label>Sex</label>
+        <select id="sex" required>
+          <option value="" disabled selected>Select Sex</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <label>Height (cm)</label>
+        <input id="height" type="number" step="0.1" placeholder="e.g. 170">
+        <label>RR</label>
+        <input id="rr" type="number" placeholder="e.g. 16">
+      </div>
+      <div class="form-column">
+        <label>Pulse (bpm)</label>
+        <input id="pulse" type="number" placeholder="e.g. 72">
+        <label>BP</label>
+        <input id="bp" type="text" placeholder="e.g. 120/80">
+        <label>Temp (°F)</label>
+        <select id="temp">
+          <option value="" disabled selected>Select Temp</option>
+          <option value="97.0">97.0 °F</option>
+          <option value="97.5">97.5 °F</option>
+          <option value="98.0">98.0 °F</option>
+          <option value="98.6">98.6 °F (Normal)</option>
+          <option value="99.0">99.0 °F</option>
+          <option value="99.5">99.5 °F</option>
+          <option value="100.0">100.0 °F</option>
+          <option value="100.5">100.5 °F</option>
+          <option value="101.0">101.0 °F</option>
+          <option value="102.0">102.0 °F</option>
+          <option value="103.0">103.0 °F</option>
+          <option value="104.0">104.0 °F</option>
+          <option value="105.0">105.0 °F</option>
+        </select>
+        <label>Blood Sugar</label>
+        <input id="sugar" type="number" placeholder="e.g. 100">
+      </div>
+    </div>
 
-<label>Patient Name</label>
-<input id="name" type="text" required>
+    <div class="section">
+      <h3>Present Complaints</h3>
+      <textarea id="complaints"></textarea>
+    </div>
+    <div class="section">
+      <h3>Rx (Prescription)</h3>
+      <textarea id="rx"></textarea>
+    </div>
+    <div class="section">
+      <h3>Investigation</h3>
+      <textarea id="investigation"></textarea>
+    </div>
+    <div class="section">
+      <h3>Follow Up</h3>
+      <textarea id="followup"></textarea>
+    </div>
+    <br>
+    <div class="top-buttons" style="justify-content: center;">
+      <button onclick="savePatient()">Save Patient</button>
+      <button onclick="printSheet()">Print Sheet</button>
+    </div>
+  </div>
 
-<label>Date</label>
-<input id="date" type="date" required>
-
-<label>Mobile</label>
-<input id="mobile" type="tel" required>
-
-<label>Weight (kg)</label>
-<input id="weight" type="number" step="0.1" placeholder="e.g. 65">
-
-</div>
-
-<div class="form-column">
-
-<label>Age</label>
-<input id="age" type="number" placeholder="e.g. 30">
-
-<label>Sex</label>
-<select id="sex" required>
-  <option value="" disabled selected>Select Sex</option>
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-  <option value="Other">Other</option>
-</select>
-
-<label>Height (cm)</label>
-<input id="height" type="number" step="0.1" placeholder="e.g. 170">
-
-<label>RR</label>
-<input id="rr" type="number" placeholder="e.g. 16">
-
-</div>
-
-<div class="form-column">
-
-<label>Pulse (bpm)</label>
-<input id="pulse" type="number" placeholder="e.g. 72">
-
-<label>BP</label>
-<input id="bp" type="text" placeholder="e.g. 120/80">
-
-<label>Temp (°F)</label>
-<select id="temp">
-  <option value="" disabled selected>Select Temp</option>
-  <option value="97.0">97.0 °F</option>
-  <option value="97.5">97.5 °F</option>
-  <option value="98.0">98.0 °F</option>
-  <option value="98.6">98.6 °F (Normal)</option>
-  <option value="99.0">99.0 °F</option>
-  <option value="99.5">99.5 °F</option>
-  <option value="100.0">100.0 °F</option>
-  <option value="100.5">100.5 °F</option>
-  <option value="101.0">101.0 °F</option>
-  <option value="102.0">102.0 °F</option>
-  <option value="103.0">103.0 °F</option>
-  <option value="104.0">104.0 °F</option>
-  <option value="105.0">105.0 °F</option>
-</select>
-
-<label>Blood Sugar</label>
-<input id="sugar" type="number" placeholder="e.g. 100">
-
-</div>
-
-</div>
-
-<div class="section">
-<h3>Present Complaints</h3>
-<textarea id="complaints"></textarea>
-</div>
-
-<div class="section">
-<h3>Rx (Prescription)</h3>
-<textarea id="rx"></textarea>
-</div>
-
-<div class="section">
-<h3>Investigation</h3>
-<textarea id="investigation"></textarea>
-</div>
-
-<div class="section">
-<h3>Follow Up</h3>
-<textarea id="followup"></textarea>
-</div>
-
-<br>
-
-<div class="top-buttons" style="justify-content: center;">
-<button onclick="savePatient()">Save Patient</button>
-<button onclick="printSheet()">Print Sheet</button>
-</div>
+  <div id="historySection" style="display:none">
+    <h2>Patient Records</h2>
+    <input id="searchBox" type="text" placeholder="Search patient" onkeyup="searchPatient()">
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Mobile</th><th>Date</th><th>Action</th></tr>
+        </thead>
+        <tbody id="patientTable"></tbody>
+      </table>
+    </div>
+  </div>
 
 </div>
 
-<div id="historySection" style="display:none">
+<script src="database.js?v=3"></script>
+<script src="app.js?v=3"></script>
+<script src="print.js?v=3"></script>
 
-<h2>Patient Records</h2>
-
-<input id="searchBox" type="text" placeholder="Search patient" onkeyup="searchPatient()">
-
-<div style="overflow-x:auto;">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Mobile</th>
-<th>Date</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="patientTable"></tbody>
-</table>
-</div>
-
-</div>
-
-</div>
-
-<script src="database.js"></script>
-<script src="app.js"></script>
-<script src="print.js"></script>
 <script>
-// Register Service Worker for PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(registration => console.log('ServiceWorker registration successful'))
-      .catch(err => console.log('ServiceWorker registration failed: ', err));
-  });
-}
+  // 1. Force unregister any rogue ghost Service Workers
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for(let registration of registrations) {
+        registration.unregister().then(function(boolean) {
+          console.log("Rogue Service Worker Destroyed.");
+        });
+      }
+    });
+  }
+
+  // 2. Nuke the Cache Storage Memory Vault
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) caches.delete(name);
+      console.log("Cache memory wiped completely clean.");
+    });
+  }
 </script>
 
 </body>

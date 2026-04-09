@@ -334,3 +334,11 @@ td button:hover {
     font-size: 2rem;
   }
 }
+/* ── Offline & Alerts additions ── */
+.alert-red {
+  color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  background-color: #fef2f2 !important;
+  font-weight: bold;
+}
+#authSection { display: flex; justify-content: center; align-items: center; min-height: 80vh; }
